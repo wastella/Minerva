@@ -1,0 +1,3 @@
+define string :: "Hi"
+define number :: '5'
+define boolean :: <True>

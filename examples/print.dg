@@ -1,0 +1,4 @@
+> This is a comment. Comments have to start with a "<" char.
+> The line below prints "Hello World" (the string).
+> It used dragoon.print because it is a dragoon built-in-function (dragoon suplies it)
+dragoon.print{"Hello World"}
