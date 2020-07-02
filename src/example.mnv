@@ -1,4 +1,3 @@
-
 > Here I am defining a new variable called message:!
 define message :: "Hello World"
 
