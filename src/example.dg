@@ -1,0 +1,12 @@
+
+> Here I am defining a new variable called message:!
+define message :: "Hello World"
+
+> Another Var:
+define hello :: '5'
+
+> There are some print statements!
+dragoon.print{message}
+
+dragoon.print{hello}
+
