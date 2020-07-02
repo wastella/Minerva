@@ -31,6 +31,7 @@ class Dragoon:
     def print_func(self, message):
 
         while True:
+            
             # If the argument is a string (In dragoon, this is denoted by the "" groupings):
             if message[0] == '\"' and message[-1] == '\"':
                 print(str(message.replace('"', "")))
