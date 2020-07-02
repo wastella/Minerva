@@ -1,3 +1,8 @@
+> If the value is encompassed in the " chars, then it is a string:
 define string :: "Hi"
+
+> If the value is encompassed in the ' chars, then it is a number:
 define number :: '5'
+
+> If the value is encompassed in the <> chars, then it is a boolean:
 define boolean :: <True>
