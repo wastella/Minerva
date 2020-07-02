@@ -29,11 +29,10 @@ class Dragoon:
         self.vars.update({var_name: var_value})
 
     def print_func(self, message):
-        
+
         while True:
-            
             # If the argument is a string (In dragoon, this is denoted by the "" groupings):
-            if message[0] == '"' and message[-1] == '"':
+            if message[0] == '\"' and message[-1] == '\"':
                 print(str(message.replace('"', "")))
 
                 break
@@ -95,6 +94,7 @@ class Dragoon:
 
         for line in contents:
 
+            line = line.strip()
 
             self.line_number += 1
             
