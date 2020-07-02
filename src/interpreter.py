@@ -67,8 +67,8 @@ class Dragoon:
 
     def tokenize(self, string, type):
         if type == "function":
+            
             token_list = string.split("{")
-
             # Updating the token list
             token_list.append(token_list[1].replace("}", ""))
             token_list[1] = token_list[0].split(".")[0]
@@ -97,13 +97,19 @@ class Dragoon:
 
             line = line.strip()
 
+
             self.line_number += 1
             
             # Testing for what the file contents looks like so we can decide whether we should tokenize using the "variable" arg or the "function" arg.
             example_tokens = self.tokenize(line, "test")
 
+            if line == "\n":
+                continue
 
-            if line == "\n" or line[0] == ">":
+            elif line == "":
+                continue
+
+            elif line[0] == ">":
                 continue
 
             # If they are declaring a var on the first line:
@@ -123,7 +129,3 @@ class Dragoon:
             else:
                 print("[Error] Syntax Error: Syntax on line {} was unrecognizable.".format(self.line_number))
                 break
-
-with open("example.dg", "r") as contents_file:
-    new_file = Dragoon()
-    new_file.parse(contents_file)
