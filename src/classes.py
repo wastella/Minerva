@@ -20,7 +20,7 @@ class Dragoon:
 
         self.operators = ["::"]
 
-        self.funcs = {"print" : "dragoon"}
+        self.built_in_funcs = ["print"]
 
         self.line_number = 0
 
@@ -29,11 +29,11 @@ class Dragoon:
         self.vars.update({var_name: var_value})
 
     def print_func(self, message):
-        
+
         while True:
-            
+
             # If the argument is a string (In dragoon, this is denoted by the "" groupings):
-            if message[0] == '"' and message[-1] == '"':
+            if message[0] == '\"' and message[-1] == '\"':
                 print(str(message.replace('"', "")))
 
                 break
@@ -70,7 +70,8 @@ class Dragoon:
             token_list = string.split("{")
 
             # Updating the token list
-            token_list[1] = token_list[1].replace("}", "")
+            token_list.append(token_list[1].replace("}", ""))
+            token_list[1] = token_list[0].split(".")[0]
             token_list[0] = token_list[0].split(".")[1]
 
         elif type == "variable":
@@ -85,9 +86,16 @@ class Dragoon:
 
         return token_list
 
+    def is_func(self, string):
+        if self.tokenize(string, "function")[0] in self.built_in_funcs and self.tokenize(string, "function")[1] == "dragoon":
+            return True
+
+
     def parse(self, contents):
 
         for line in contents:
+
+            line = line.strip()
 
             self.line_number += 1
             
@@ -108,10 +116,9 @@ class Dragoon:
                 self.vars.update({new_var.name : new_var.value})
 
             # If it is a function usage:
-            elif len(example_tokens) == 1:
-
+            elif self.is_func(line):
                 tokens = self.tokenize(line, "function")
-                self.print_func(tokens[1])
+                self.print_func(tokens[2])
 
             else:
                 print("[Error] Syntax Error: Syntax on line {} was unrecognizable.".format(self.line_number))
