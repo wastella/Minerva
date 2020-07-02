@@ -1,0 +1,5 @@
+  
+> The code below creates a variable called 'message' and assigns it to "Hello World"
+define message :: "Hello World"
+
+dragoon.print{message}
