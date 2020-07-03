@@ -9,12 +9,12 @@ class Setup():
     def __init__(self):
         
         print('+------------------------------------------------------+')
-        print('|           Installing Bluebird - Pre-release          |')
+        print('|           Installing Minerva - Pre-release           |')
         print('|               Developed By William Stella            |')
         print('+------------------------------------------------------+')
         print("| Operating System : " + platform.system())
         print("| Release          : " + platform.release())
-        print("| Bluebird Version  : Pre-release                     []|")
+        print("| Minerva Version  : Pre-release                     []|")
 
 
     def setup(self):
@@ -38,15 +38,10 @@ class Setup():
 
 
     def mac_osx_install_route(self):
-        """ MacOSX Install Route
-        
-        This method will install the tachyon language on a mac by making a 
-        tachyon executable and adding it the /usr/local/bin directory
-        """
 
         # CHOMD +X Changes the permissions of the fle to make it executable
         os.system("chmod +x ./src/main.py")
-        print("| Set Tachyon Executable Permission                  []|")
+        print("| Set Minerva Executable Permission                  []|")
 
         # Add customised directory to the $PATH
         os.system('export PATH="$PATH:$HOME/bin"')
