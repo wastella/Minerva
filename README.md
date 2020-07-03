@@ -1,7 +1,5 @@
-# Dragoon (Toy Programming Language)
+# Minerva (Toy Programming Language)
 
 ## About
-Dragoon is a toy programming language. It is statically typed and is heavilyinfluenced by Python. I tried my best not to do the same exact syntax but ... it is hard. 
+Minerva is a toy programming language. It is statically typed and is heavily influenced by Python. I tried my best not to do the same exact syntax but ... it is hard. 
 
-## Naming Ideas/Contest:
-Please give me name ideas for this language!

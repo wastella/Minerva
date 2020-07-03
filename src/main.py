@@ -27,14 +27,13 @@ def main():
         return # quit programme
     except: pass
 
-    # Open source code file and get it's content and save it to the 'contents' var
     try:
+        # Open source code file and get it's content and save it to the 'contents' var
         with open(path + "/" + fileName, "r") as file:
             new_file = interpreter.Dragoon()
             new_file.parse(file)
-    except: 
-        print('Cannot find "' + fileName + '"')
-
+    except FileNotFoundError:
+        print("[FileError] Cannot find {}".format(fileName))
     
 
 main()
