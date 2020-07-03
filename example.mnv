@@ -1,3 +1,0 @@
-define equation :: '1+1'
-
-dragoon.print{equation}}
