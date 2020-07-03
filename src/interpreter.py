@@ -7,13 +7,15 @@
 # The only reason that I have a variable class is, if I want to add built-in-functions that operate on the variables, then they can be methods in this class:
 class Variable:
     def __init__(self, name, value):
+        
         self.name = name
+        
         self.value = value
 
 
 class Dragoon:
     def __init__(self):
-
+        
         self.vars = {}
 
         self.keywords = ["declare"]
@@ -31,6 +33,8 @@ class Dragoon:
     def print_func(self, message):
 
         while True:
+
+            message = message.strip() 
             
             # If the argument is a string (In dragoon, this is denoted by the "" groupings):
             if message[0] == '\"' and message[-1] == '\"':
@@ -40,7 +44,8 @@ class Dragoon:
 
             # If the argument is an int (In dragoon, this is denoted by the '' groupings):
             elif message[0] == "'" and message[-1] == "'":
-                print(int(message.replace("'", "")))
+                print("Here")
+                print(eval(message.replace("'", "")))
 
                 break
 
@@ -62,25 +67,29 @@ class Dragoon:
                     message = self.vars[message.strip("\n")]
 
                 except KeyError:
+
                     print("[Error] Syntax Error: The argument: {} on line {} was invalid".format(message, self.line_number))
+                    
                     break
 
     def tokenize(self, string, type):
         if type == "function":
             
             token_list = string.split("{")
+            
             # Updating the token list
             token_list.append(token_list[1].replace("}", ""))
             token_list[1] = token_list[0].split(".")[0]
             token_list[0] = token_list[0].split(".")[1]
 
         elif type == "variable":
-            token_list = string.split()
-            if token_list[-2] != "::":
-                token_list[-2] = token_list[-2] + " " + token_list[-1]
-                token_list.pop(-1)
             
-
+            token_list = string.strip().split()
+            
+            other_token_list = string.strip().split("::")
+            
+            token_list[3] = other_token_list[1]
+ 
         elif type == "test":
             token_list = string.split()
 
@@ -96,12 +105,13 @@ class Dragoon:
         for line in contents:
 
             line = line.strip()
-
+            
 
             self.line_number += 1
             
             # Testing for what the file contents looks like so we can decide whether we should tokenize using the "variable" arg or the "function" arg.
             example_tokens = self.tokenize(line, "test")
+            
 
             if line == "\n":
                 continue
@@ -113,7 +123,7 @@ class Dragoon:
                 continue
 
             # If they are declaring a var on the first line:
-            elif example_tokens[0] == "define":
+            if example_tokens[0] == "define":
 
                 tokens = self.tokenize(line, "variable")
                 
@@ -123,9 +133,12 @@ class Dragoon:
 
             # If it is a function usage:
             elif self.is_func(line):
+
                 tokens = self.tokenize(line, "function")
                 self.print_func(tokens[2])
 
             else:
+
+                #? Is this the best error message?
                 print("[Error] Syntax Error: Syntax on line {} was unrecognizable.".format(self.line_number))
                 break
